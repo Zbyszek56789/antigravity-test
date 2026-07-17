@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f4f1eb;
+  --color-ink: #1a1a1a;
+  --color-brass: #b38b4d;
+  --color-faded: #4a4a4a;
+
+  --font-ledger: var(--font-ledger);
+  --font-doverhouse: var(--font-doverhouse);
+  --font-tallow: var(--font-tallow);
+  --font-body: var(--font-body);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-ink leading-relaxed overflow-x-hidden relative mx-auto max-w-[1400px];
+    border-left: 1px solid var(--color-ink);
+    border-right: 1px solid var(--color-ink);
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; bottom: 0; left: 50%;
+    width: 1px;
+    background-color: rgba(26, 26, 26, 0.08);
+    z-index: -1;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply border-none font-ledger text-[0.85rem] uppercase hover:text-brass transition-colors duration-200;
+  }
+  .workflow-step {
+    @apply mb-8 pl-8 relative;
+  }
+  .workflow-step::before {
+    content: '→';
+    @apply absolute left-0 text-brass font-ledger;
+  }
+  .license-tier {
+    @apply border border-ink p-8;
+  }
+}
