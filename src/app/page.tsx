@@ -1,10 +1,16 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 
 import { SignInButton, UserButton, useAuth } from '@clerk/clerk-react'
 
 export default function Home() {
   const { isSignedIn } = useAuth();
+  
+  const [sandboxText, setSandboxText] = useState('Grumpy wizards make toxic brew for the evil Queen and Jack.');
+  const [sandboxFont, setSandboxFont] = useState('font-ledger');
+  const [sandboxSize, setSandboxSize] = useState(48);
+  const [sandboxTracking, setSandboxTracking] = useState(0);
+  const [sandboxLeading, setSandboxLeading] = useState(1.2);
 
   return (
     <>
@@ -12,6 +18,7 @@ export default function Home() {
         <a href="#home" className="font-tallow text-2xl border-none">Marginalia Type Co.</a>
         <div className="hidden md:flex gap-8 items-center">
           <a href="#archive" className="nav-link">The Archive</a>
+          <a href="#sandbox" className="nav-link">Sandbox</a>
           <a href="#process" className="nav-link">Process</a>
           <a href="#commissions" className="nav-link">Commissions</a>
           <a href="#about" className="nav-link">About</a>
@@ -77,6 +84,69 @@ export default function Home() {
               </div>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section id="sandbox" className="p-8 py-24 border-b border-ink bg-cream">
+        <div className="max-w-5xl mx-auto">
+          <div className="font-ledger text-sm uppercase text-faded mb-12">Interactive — Typographic Sandbox</div>
+          
+          {!isSignedIn ? (
+            <div className="border border-dashed border-ink p-16 text-center bg-black/5 relative overflow-hidden">
+              <div className="absolute inset-0 blur-sm opacity-20 pointer-events-none select-none">
+                <div className="font-tallow text-[8rem] leading-none mt-12 -rotate-2">Restricted Access</div>
+              </div>
+              <h3 className="font-ledger text-2xl uppercase mb-4 relative z-10">Members Only</h3>
+              <p className="mb-8 relative z-10 max-w-md mx-auto">The interactive type-tester is an exclusive tool for registered users. Sign in to test kerning, ligatures, and weights on the fly.</p>
+              <SignInButton mode="modal">
+                <button className="bg-ink text-cream p-4 font-ledger uppercase tracking-widest hover:bg-brass transition-colors relative z-10">Unlock Sandbox</button>
+              </SignInButton>
+            </div>
+          ) : (
+            <div className="border border-ink flex flex-col md:flex-row">
+              {/* Controls */}
+              <div className="p-8 md:w-1/3 border-b md:border-b-0 md:border-r border-ink bg-black/5 flex flex-col gap-8">
+                <div>
+                  <label className="block font-ledger text-xs uppercase text-faded mb-2">Typeface</label>
+                  <select 
+                    value={sandboxFont} 
+                    onChange={(e) => setSandboxFont(e.target.value)}
+                    className="w-full p-2 bg-transparent border-b border-ink focus:outline-none focus:border-brass font-ledger appearance-none rounded-none"
+                  >
+                    <option value="font-ledger">Kestrel Ledger</option>
+                    <option value="font-doverhouse">Doverhouse Sans</option>
+                    <option value="font-tallow">Tallow & Wick</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block font-ledger text-xs uppercase text-faded mb-2 flex justify-between"><span>Size</span> <span>{sandboxSize}px</span></label>
+                  <input type="range" min="16" max="160" value={sandboxSize} onChange={(e) => setSandboxSize(Number(e.target.value))} className="w-full accent-ink cursor-pointer" />
+                </div>
+                <div>
+                  <label className="block font-ledger text-xs uppercase text-faded mb-2 flex justify-between"><span>Tracking</span> <span>{sandboxTracking}em</span></label>
+                  <input type="range" min="-0.1" max="0.5" step="0.01" value={sandboxTracking} onChange={(e) => setSandboxTracking(Number(e.target.value))} className="w-full accent-ink cursor-pointer" />
+                </div>
+                <div>
+                  <label className="block font-ledger text-xs uppercase text-faded mb-2 flex justify-between"><span>Leading</span> <span>{sandboxLeading}</span></label>
+                  <input type="range" min="0.8" max="2.5" step="0.1" value={sandboxLeading} onChange={(e) => setSandboxLeading(Number(e.target.value))} className="w-full accent-ink cursor-pointer" />
+                </div>
+              </div>
+              
+              {/* Output */}
+              <div className="p-8 md:w-2/3 min-h-[400px]">
+                <textarea 
+                  value={sandboxText}
+                  onChange={(e) => setSandboxText(e.target.value)}
+                  className={`w-full h-full bg-transparent resize-none focus:outline-none ${sandboxFont}`}
+                  style={{
+                    fontSize: `${sandboxSize}px`,
+                    letterSpacing: `${sandboxTracking}em`,
+                    lineHeight: sandboxLeading
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
