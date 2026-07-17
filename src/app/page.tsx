@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 
-import { SignInButton, UserButton, useAuth } from '@clerk/nextjs'
+import { SignInButton, UserButton, useAuth } from '@clerk/clerk-react'
 
 export default function Home() {
   const { isSignedIn } = useAuth();

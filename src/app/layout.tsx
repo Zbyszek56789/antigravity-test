@@ -7,7 +7,7 @@ const oswald = Oswald({ weight: "500", subsets: ["latin"], variable: "--font-dov
 const playfair = Playfair_Display({ weight: "500", style: ["normal", "italic"], subsets: ["latin"], variable: "--font-tallow" });
 const spaceMono = Space_Mono({ weight: "400", subsets: ["latin"], variable: "--font-ledger" });
 
-import { ClerkProvider } from '@clerk/nextjs'
+import { Providers } from './providers'
 
 export const metadata: Metadata = {
   title: "Marginalia Type Co. | Foundry & Archive",
@@ -16,12 +16,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={`${crimson.variable} ${oswald.variable} ${playfair.variable} ${spaceMono.variable} font-body antialiased`}>
+    <html lang="en">
+      <body className={`${crimson.variable} ${oswald.variable} ${playfair.variable} ${spaceMono.variable} font-body antialiased`}>
+        <Providers>
           {children}
-        </body>
-      </html>
-    </ClerkProvider>
+        </Providers>
+      </body>
+    </html>
   );
 }
