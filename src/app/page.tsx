@@ -11,7 +11,6 @@ export default function Home() {
           <a href="#process" className="nav-link">Process</a>
           <a href="#commissions" className="nav-link">Commissions</a>
           <a href="#about" className="nav-link">About</a>
-          <a href="#licensing" className="nav-link">Licensing</a>
         </div>
       </nav>
 
@@ -94,42 +93,6 @@ export default function Home() {
             <h2 className="text-3xl mb-8">Custom Commissions</h2>
             <p className="text-xl mb-8 text-justify">For heritage brands, boutique hospitality, and independent publishers who require exclusive typographic assets. If you possess a piece of archival material—a founder's handwritten ledger, a historical logo, a faded brass plaque—we can excavate it into a fully functional, proprietary typeface.</p>
             <a href="#contact" className="text-brass font-tallow text-2xl border-b border-brass">Discuss a Commission</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="licensing" className="p-8 py-24 border-b border-ink">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl mb-4">Licensing</h2>
-          <p className="text-xl mb-12">Straightforward, perpetual licenses. No subscription fees. No fake urgency.</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="license-tier">
-              <h3 className="font-ledger uppercase text-lg">Personal</h3>
-              <div className="font-tallow text-5xl my-4">€30</div>
-              <ul className="mb-8">
-                <li className="border-b border-black/10 pb-2 mb-2">1 User</li>
-                <li className="border-b border-black/10 pb-2 mb-2">Non-commercial projects</li>
-                <li className="border-b border-black/10 pb-2 mb-2">Student work</li>
-              </ul>
-            </div>
-            <div className="license-tier">
-              <h3 className="font-ledger uppercase text-lg">Commercial</h3>
-              <div className="font-tallow text-5xl my-4">€120</div>
-              <ul className="mb-8">
-                <li className="border-b border-black/10 pb-2 mb-2">Up to 5 Users</li>
-                <li className="border-b border-black/10 pb-2 mb-2">Client projects</li>
-                <li className="border-b border-black/10 pb-2 mb-2">Webfont included</li>
-              </ul>
-            </div>
-            <div className="license-tier">
-              <h3 className="font-ledger uppercase text-lg">Brand / Enterprise</h3>
-              <div className="font-tallow text-5xl my-4">€850</div>
-              <ul className="mb-8">
-                <li className="border-b border-black/10 pb-2 mb-2">Unlimited internal users</li>
-                <li className="border-b border-black/10 pb-2 mb-2">Global broadcasting</li>
-                <li className="border-b border-black/10 pb-2 mb-2">Unlimited web views</li>
-              </ul>
-            </div>
           </div>
         </div>
       </section>
