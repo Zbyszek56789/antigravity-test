@@ -7,6 +7,8 @@ const oswald = Oswald({ weight: "500", subsets: ["latin"], variable: "--font-dov
 const playfair = Playfair_Display({ weight: "500", style: ["normal", "italic"], subsets: ["latin"], variable: "--font-tallow" });
 const spaceMono = Space_Mono({ weight: "400", subsets: ["latin"], variable: "--font-ledger" });
 
+import { ClerkProvider } from '@clerk/nextjs'
+
 export const metadata: Metadata = {
   title: "Marginalia Type Co. | Foundry & Archive",
   description: "Excavating forgotten typefaces from historical ephemera.",
@@ -14,10 +16,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${crimson.variable} ${oswald.variable} ${playfair.variable} ${spaceMono.variable} font-body antialiased`}>
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${crimson.variable} ${oswald.variable} ${playfair.variable} ${spaceMono.variable} font-body antialiased`}>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

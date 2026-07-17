@@ -1,16 +1,27 @@
 "use client";
 import React from 'react';
 
+import { SignInButton, UserButton, useAuth } from '@clerk/nextjs'
+
 export default function Home() {
+  const { isSignedIn } = useAuth();
+
   return (
     <>
       <nav className="sticky top-0 bg-cream border-b border-ink flex justify-between items-center p-4 md:px-8 z-50">
         <a href="#home" className="font-tallow text-2xl border-none">Marginalia Type Co.</a>
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex gap-8 items-center">
           <a href="#archive" className="nav-link">The Archive</a>
           <a href="#process" className="nav-link">Process</a>
           <a href="#commissions" className="nav-link">Commissions</a>
           <a href="#about" className="nav-link">About</a>
+          {!isSignedIn ? (
+            <SignInButton mode="modal">
+              <button className="nav-link cursor-pointer uppercase">Sign In</button>
+            </SignInButton>
+          ) : (
+            <UserButton />
+          )}
         </div>
       </nav>
 
