@@ -1,32 +1,7 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function Home() {
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [status, setStatus] = useState('');
-
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('Submitting...');
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, message }),
-      });
-      if (res.ok) {
-        setStatus('Message received. We will be in touch.');
-        setEmail('');
-        setMessage('');
-      } else {
-        setStatus('Transmission failed. Please try again.');
-      }
-    } catch {
-      setStatus('Transmission error.');
-    }
-  };
-
   return (
     <>
       <nav className="sticky top-0 bg-cream border-b border-ink flex justify-between items-center p-4 md:px-8 z-50">
@@ -163,11 +138,10 @@ export default function Home() {
         <div className="max-w-xl mx-auto text-center">
           <h2 className="font-tallow text-5xl mb-4">Transmission</h2>
           <p className="mb-8">For licensing inquiries, archive access, or commissions.</p>
-          <form onSubmit={handleContactSubmit} className="flex flex-col gap-4 text-left">
-            <input type="email" required placeholder="Email Address" value={email} onChange={e => setEmail(e.target.value)} className="p-4 border border-ink bg-transparent focus:outline-none focus:border-brass font-ledger" />
-            <textarea required placeholder="Message" rows={4} value={message} onChange={e => setMessage(e.target.value)} className="p-4 border border-ink bg-transparent focus:outline-none focus:border-brass font-ledger"></textarea>
+          <form action="https://formspree.io/f/xyzkqabp" method="POST" className="flex flex-col gap-4 text-left">
+            <input type="email" name="email" required placeholder="Email Address" className="p-4 border border-ink bg-transparent focus:outline-none focus:border-brass font-ledger" />
+            <textarea name="message" required placeholder="Message" rows={4} className="p-4 border border-ink bg-transparent focus:outline-none focus:border-brass font-ledger"></textarea>
             <button type="submit" className="bg-ink text-cream p-4 font-ledger uppercase tracking-widest hover:bg-brass transition-colors">Send</button>
-            {status && <div className="text-center font-ledger text-sm mt-4 text-brass">{status}</div>}
           </form>
         </div>
       </section>
